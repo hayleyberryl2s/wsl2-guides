@@ -8,7 +8,7 @@ Install the "PHP Debug" extension. (Link: https://marketplace.visualstudio.com/i
 code --install-extension xdebug.php-debug
 ```
 
-In the "Run and Debug" tab in VS Code (Ctrl+Shift+D), click the cog in the top-left to edit the project's launch.conf.
+In the "Run and Debug" tab in VS Code (Ctrl+Shift+D), click the cog in the top-left to edit the project's launch.json. (Or just copy the launch.json in the root of this repo)
 
 Edit the launch.config to match the following. Update the `pathMappings` to match the project's location on your WSL2 guest.
 
