@@ -10,7 +10,7 @@ code --install-extension xdebug.php-debug
 
 In the "Run and Debug" tab in VS Code (Ctrl+Shift+D), click the cog in the top-left to edit the project's launch.json.
 
-Edit the launch.config to match the following. (Or just copy the launch.json in the root of this repo)
+Edit the launch.json to match the following. (Or just copy the launch.json in the root of this repo)
 
 Update the `pathMappings` to match the project's location on your WSL2 guest.
 
@@ -147,7 +147,7 @@ When first setting up a project, I typically just set a breakpoint on the first 
 
 ### PHPUnit debugging
 
-The launch.config defines 3 configurations available:
+The launch.json defines 3 configurations available:
 
 #### phpunit
 
