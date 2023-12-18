@@ -173,3 +173,19 @@ You may need to modify your firewall rules to allow WSL2 to access the host on p
 ```
 New-NetFirewallRule -DisplayName "WSL Testing" -InterfaceAlias "vEthernet (WSL)" -Direction Inbound -Protocol TCP -LocalPort 9000 -Action Allow
 ```
+
+## Increase nginx timeout
+
+If you step through code line-by-line, you will get nginx timeout errors. The PHP code will still be running, but nginx will not be able to serve the response.
+
+Apply a timeout of 600 seconds (10 minutes) via:
+
+```
+echo "fastcgi_read_timeout 600;" | sudo sh -c "cat > /etc/nginx/conf.d/l2s-fastcgi-timeout.conf"
+```
+
+Then restart nginx:
+
+```
+valet restart
+```
