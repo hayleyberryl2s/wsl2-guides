@@ -25,6 +25,20 @@
             }
         },
         {
+            "name": "phpunit --stop-on-failure",
+            "type": "php",
+            "request": "launch",
+            "program": "${workspaceRoot}/vendor/bin/phpunit",
+            "args": [
+                "--stop-on-failure"
+            ],
+            "port": 9000,
+            "cwd": "${workspaceRoot}",
+            "pathMappings": {
+                "${userHome}/Projects/${workspaceFolderBasename}": "${workspaceRoot}" 
+            }
+        },
+        {
             "name": "phpunit (current file)",
             "type": "php",
             "request": "launch",
