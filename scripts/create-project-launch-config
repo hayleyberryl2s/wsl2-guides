@@ -1,0 +1,29 @@
+#! /usr/bin/env bash
+
+# This script creates a launch.json file for every project,
+# which enables debugging in VS Code
+
+project_name=$1
+project_dir=$(realpath $(dirname $0)/../../$project_name)
+
+NO_FORMAT="\033[0m"
+C_DARKORANGE="\033[38;5;208m"
+C_GREEN3="\033[38;5;34m"
+C_RED="\033[38;5;9m"
+
+if [ ! -d $project_dir ]; then
+    echo "[${C_DARKORANGE}Skip${NO_FORMAT}] $project_dir does not exist"
+    exit 1
+fi
+
+if [ ! -d $project_dir/.vscode ]; then
+    mkdir $project_dir/.vscode
+fi
+
+if [ ! -f $project_dir/.vscode/launch.json ]; then
+    if stdout=$(cp launch.json $project_dir/.vscode/launch.json 2>&1); then
+        echo "[${C_GREEN3}OK${NO_FORMAT}] Created launch.json for $project_name"
+    else
+        echo "[${C_RED}Fail${NO_FORMAT}] Could not create launch.json for $project_name: $stdout"
+    fi
+fi

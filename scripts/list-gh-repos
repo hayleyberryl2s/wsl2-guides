@@ -1,0 +1,6 @@
+#! /bin/sh
+
+# This script prints out all projects from GitHub in the "mblsolutions" org
+# "gh" needs to be installed, and logged into a GitHub account with access
+
+gh repo list mblsolutions --json name --jq '.[].name'
