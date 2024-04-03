@@ -1,0 +1,14 @@
+#! /bin/sh
+
+# This script creates a launch.json file for every project,
+# which enables debugging in VS Code
+
+project_name=$1
+
+if [ ! -d $project_name/.vscode ]; then
+    mkdir $project_name/.vscode
+fi
+
+if [ ! -f $project_name/.vscode/launch.json ]; then
+    cp launch.json ../$project_name/.vscode/launch.json
+fi

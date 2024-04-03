@@ -1,0 +1,7 @@
+#! /bin/sh
+
+projects=$($(dirname $0)/list-gh-repos)
+
+for project in $projects; do
+    $(dirname $0)/create-project-launch-config "$project"
+done
