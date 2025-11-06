@@ -12,35 +12,36 @@ sudo chmod +x /usr/local/bin/generate-nginx-config
 This generates certifgicates and Nginx configs for all projects in the `PROJECTS` array.
 
 ```bash
-PROJECTS=(quik-gift
-    mcryptgatewayservice
-    newlookforbuisness
-    sld-module
+PROJECTS=(
+    quik-gift
+    link-module
     simfoni
     inspireddeck-admin
     chooza-gift-app
     inspireddeck-support
-    greggs-for-business
     inspireddeck-store
     inspireddeck-portal
     simfoni-retail
     inspireddeck-server
     inspireddeck-public
 )
-```
 
-```bash
 for project in "${PROJECTS[@]}"; do
   DOMAIN="${project}.test"
-  sudo openssl req -x509 -nodes -days 3650 -newkey rsa:2048 
-      -keyout "/etc/ssl/private/${DOMAIN}.key" 
-      -out "/etc/ssl/certs/${DOMAIN}.crt" 
-      -subj "/C=GB/ST=London/L=London/O=My Company/CN=${DOMAIN}" 
+  sudo openssl req -x509 -nodes -days 3650 -newkey rsa:2048 \
+      -keyout "/etc/ssl/private/${DOMAIN}.key" \
+      -out "/etc/ssl/certs/${DOMAIN}.crt" \
+      -subj "/C=GB/ST=Merseyside/L=Liverpool/O=Love2Shop/CN=${DOMAIN}" \
       -addext "subjectAltName=DNS:${DOMAIN}"
 
   /usr/local/bin/generate-nginx-config $project | sudo tee /etc/nginx/sites-available/$DOMAIN.conf
-  sudo ln -s /etc/nginx/sites-available/$DOMAIN.conf /etc/nginx/sites-enabled/$DOMAIN.conf
+
+  if [[ ! -L /etc/nginx/sites-enabled/$DOMAIN.conf ]]; then
+    sudo ln -s /etc/nginx/sites-available/$DOMAIN.conf /etc/nginx/sites-enabled/$DOMAIN.conf
+  fi
+
   sudo nginx -t
-  sudo systemctl reload nginx
 done
+
+sudo systemctl restart nginx
 ```

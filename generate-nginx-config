@@ -5,12 +5,22 @@
 PROJECT="$1"
 
 if [[ -z "$PROJECT" ]]; then
-  echo "Usage: $0 <project-name>"
-  exit 1
+    echo "Usage: $0 <project-name>"
+    exit 1
+fi
+
+if [[ -z "$PROJECTS_DIR" ]]; then
+    PROJECTS_DIR="$HOME/Projects"
+fi;
+
+if [[ ! -d "$PROJECTS_DIR" ]]; then
+    echo "ERROR: PROJECTS_DIR points to non-existent directory. Please provide a valid path to where your projects are."
+    echo "Example usage: PROJECTS_DIR=/home/$USER/Projects  $0 <project-name>"
+    exit 1
 fi
 
 DOMAIN="$PROJECT.test"
-PROJECT_PATH="/home/hayley/Projects/$PROJECT"
+PROJECT_PATH="~/Projects/$PROJECT"
 CERT_PATH="/etc/ssl/certs/$DOMAIN.crt"
 KEY_PATH="/etc/ssl/private/$DOMAIN.key"
 
