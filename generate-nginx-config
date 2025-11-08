@@ -15,12 +15,12 @@ fi;
 
 if [[ ! -d "$PROJECTS_DIR" ]]; then
     echo "ERROR: PROJECTS_DIR points to non-existent directory. Please provide a valid path to where your projects are."
-    echo "Example usage: PROJECTS_DIR=/home/$USER/Projects  $0 <project-name>"
+    echo "Example usage: PROJECTS_DIR=$HOME/Projects  $0 <project-name>"
     exit 1
 fi
 
 DOMAIN="$PROJECT.test"
-PROJECT_PATH="~/Projects/$PROJECT"
+PROJECT_PATH=$(realpath "$PROJECTS_DIR/$PROJECT")
 CERT_PATH="/etc/ssl/certs/$DOMAIN.crt"
 KEY_PATH="/etc/ssl/private/$DOMAIN.key"
 
