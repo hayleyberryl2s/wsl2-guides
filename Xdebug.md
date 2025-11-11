@@ -113,34 +113,35 @@ Update the `pathMappings` to match the project's location on your WSL2 guest.
 Install xdebug
 
 ```
-apt install php8.1-xdebug
+apt install php8.2-xdebug
 ```
 
 Create the config file
 
 ```
-nano /etc/php/8.1/fpm/conf.d/30-xdebug-wsl.ini
+nano /etc/php/8.2/fpm/conf.d/30-xdebug-wsl.ini
 ```
 
 With the following:
 
 ```
 xdebug.mode=debug
-xdebug.start_with_request=yes
-xdebug.discover_client_host=1
-xdebug.client_port=9000
+xdebug.start_with_request=trigger
+;xdebug.discover_client_host=1
+;xdebug.client_port=9000
+;xdebug.client_host=192.168.1.71
 ```
 
 Apply the same config to PHP CLI
 
 ```
-cp /etc/php/8.1/fpm/conf.d/30-xdebug-wsl.ini /etc/php/8.1/cli/conf.d/30-xdebug-wsl.ini
+cp /etc/php/8.2/fpm/conf.d/30-xdebug-wsl.ini /etc/php/8.2/cli/conf.d/30-xdebug-wsl.ini
 ```
 
 Restart php-fpm
 
 ```
-systemctl restart php8.1-fpm
+systemctl restart php8.2-fpm
 ```
 
 ## Usage
@@ -201,5 +202,5 @@ echo "fastcgi_read_timeout 600;" | sudo sh -c "cat > /etc/nginx/conf.d/l2s-fastc
 Then restart nginx:
 
 ```
-valet restart
+systemctl restart nginx
 ```
