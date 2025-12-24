@@ -20,11 +20,11 @@ listen.owner = $USER
 listen.group = $USER
 
 pm = dynamic
-pm.max_children = 10
-pm.start_servers = 2
-pm.min_spare_servers = 2
+pm.max_children = 4
+pm.start_servers = 1
+pm.min_spare_servers = 1
 pm.max_spare_servers = 4
-pm.max_requests = 500
+pm.max_requests = 255
 
 env[APP_ENV] = local
 env[APP_DEBUG] = true

@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=Brave WSL
+Exec=/mnt/c/Program Files/BraveSoftware/Brave-Browser/Application/brave.exe %u
+Type=Application
+Terminal=false
+Categories=Network;WebBrowser;
